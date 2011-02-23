@@ -175,13 +175,20 @@
 - (unsigned long long)computeDiskCacheSize {
 	unsigned long long recomputedCacheSize = 0;
 	
+	// Create an autorelease pool to help with the memory overhead
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	// Go through all the files and add up the size
 	NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.cacheDirectory error:nil];
 	for (NSString *file in files) {
-		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:nil];
-		if (![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
+		NSError *error = nil;
+		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:&error];
+		if (!error && ![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
 			recomputedCacheSize += [fileAttributes fileSize];
 		}
 	}
+	
+	[pool drain];
 	
 	return recomputedCacheSize;
 }
@@ -190,13 +197,19 @@
 	NSArray *files				= [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.cacheDirectory error:nil];
 	NSMutableArray *pairArray	= [NSMutableArray arrayWithCapacity:[files count]];
 	
+	// Create an autorelease pool to help with the memory overhead
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	// Go through the files and create ZSKeyValuePairs
 	for (NSString *file in files) {
-		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:nil];
-		if (![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
+		NSError *error = nil;
+		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:&error];
+		if (!error && ![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
 			[pairArray addObject:[[[ZSKeyValuePair alloc] initWithKey:[self.cacheDirectory stringByAppendingPathComponent:file] andValue:[fileAttributes fileModificationDate]] autorelease]];
 		}
 	}
+	
+	[pool drain];
 	
 	// Sort by value (modified date) descending
 	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"value" ascending:NO] autorelease];
