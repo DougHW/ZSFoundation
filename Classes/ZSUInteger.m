@@ -46,6 +46,10 @@
 	}
 }
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ZSUInteger: %d}", self.value];
+}
+
 
 #pragma mark -
 #pragma mark NSObject Protocol methods

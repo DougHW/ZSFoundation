@@ -43,7 +43,7 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"ZSKeyValuePair: %@ -> %@", self.key, self.value];
+	return [NSString stringWithFormat:@"{ZSKeyValuePair: %@ -> %@}", self.key, self.value];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

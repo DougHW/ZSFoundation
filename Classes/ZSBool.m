@@ -46,6 +46,10 @@
 	}
 }
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ZSBool: %@}", self.value ? @"YES" : @"NO"];
+}
+
 
 #pragma mark -
 #pragma mark NSObject Protocol methods
