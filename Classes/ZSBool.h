@@ -31,7 +31,10 @@
 
 @property (nonatomic)	BOOL	value;
 
++ (id)boolWithBool:(BOOL)aValue;
+
 - (id)initWithBool:(BOOL)aValue;
+
 - (NSComparisonResult)compare:(ZSBool *)aZSBool;
 
 @end

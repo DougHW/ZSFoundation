@@ -23,6 +23,10 @@
 
 @synthesize value;
 
++ (id)boolWithBool:(BOOL)aValue {
+	return [[[ZSBool alloc] initWithBool:aValue] autorelease];
+}
+
 - (id)initWithBool:(BOOL)aValue {
 	if (self = [super init]) {
 		value = aValue;

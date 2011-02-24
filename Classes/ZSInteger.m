@@ -23,6 +23,10 @@
 
 @synthesize value;
 
++ (id)integerWithInteger:(NSInteger)aValue {
+	return [[[ZSInteger alloc] initWithInteger:aValue] autorelease];
+}
+
 - (id)initWithInteger:(NSInteger)aValue {
 	if (self = [super init]) {
 		value = aValue;

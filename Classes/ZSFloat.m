@@ -23,6 +23,10 @@
 
 @synthesize value;
 
++ (id)floatWithFloat:(CGFloat)aValue {
+	return [[[ZSFloat alloc] initWithFloat:aValue] autorelease];
+}
+
 - (id)initWithFloat:(CGFloat)aValue {
 	if (self = [super init]) {
 		value = aValue;

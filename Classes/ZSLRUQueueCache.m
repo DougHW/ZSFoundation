@@ -194,7 +194,7 @@
 	for (NSString *file in files) {
 		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:nil];
 		if (![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
-			[pairArray addObject:[[[ZSKeyValuePair alloc] initWithKey:[self.cacheDirectory stringByAppendingPathComponent:file] andValue:[fileAttributes fileModificationDate]] autorelease]];
+			[pairArray addObject:[[[ZSKeyValuePair alloc] initWithKey:[self.cacheDirectory stringByAppendingPathComponent:file] value:[fileAttributes fileModificationDate]] autorelease]];
 		}
 	}
 	

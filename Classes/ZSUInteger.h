@@ -31,7 +31,10 @@
 
 @property (nonatomic)	NSUInteger	value;
 
++ (id)uintegerWithUInteger:(NSUInteger)aValue;
+
 - (id)initWithUInteger:(NSUInteger)aValue;
+
 - (NSComparisonResult)compare:(ZSUInteger *)aZSUInteger;
 
 @end

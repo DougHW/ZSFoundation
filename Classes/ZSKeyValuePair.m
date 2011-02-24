@@ -23,7 +23,11 @@
 
 @synthesize key, value;
 
-- (id)initWithKey:(id)aKey andValue:(id)aValue {
++ (id)keyValuePairWithKey:(id)aKey value:(id)aValue {
+	return [[[ZSKeyValuePair alloc] initWithKey:aKey value:aValue] autorelease];
+}
+
+- (id)initWithKey:(id)aKey value:(id)aValue {
 	if (self = [super init]) {
 		key		= [aKey retain];
 		value	= [aValue retain];
