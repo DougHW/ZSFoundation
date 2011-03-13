@@ -28,7 +28,8 @@
 }
 
 - (id)initWithUInteger:(NSUInteger)aValue {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		value = aValue;
 	}
 	return self;

@@ -28,7 +28,8 @@
 }
 
 - (id)initWithKey:(id)aKey value:(id)aValue {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		key		= [aKey retain];
 		value	= [aValue retain];
 	}

@@ -72,7 +72,8 @@
 }
 
 - (id)initWithCacheDirectory:(NSString *)aCacheDirectory {
-	if (self = [self initWithCacheDirectory:aCacheDirectory memoryCountLimit:0 diskSizeLimit:0]) {
+    self = [self initWithCacheDirectory:aCacheDirectory memoryCountLimit:0 diskSizeLimit:0];
+	if (self) {
 		exclusiveDiskCacheUser	= YES;
 		diskSize				= 0;
 		
@@ -98,7 +99,8 @@
 }
 
 - (id)initWithCacheDirectory:(NSString *)aCacheDirectory memoryCountLimit:(NSUInteger)memoryLimit diskSizeLimit:(NSUInteger)diskLimit {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		cacheDirectory		= [aCacheDirectory copy];
 		memoryCountLimit	= memoryLimit;
 		diskSizeLimit		= diskLimit;
@@ -205,7 +207,9 @@
 		NSError *error = nil;
 		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:file] error:&error];
 		if (!error && ![[fileAttributes fileType] isEqualToString:NSFileTypeDirectory]) {
-			[pairArray addObject:[[[ZSKeyValuePair alloc] initWithKey:[self.cacheDirectory stringByAppendingPathComponent:file] andValue:[fileAttributes fileModificationDate]] autorelease]];
+			ZSKeyValuePair *pair = [ZSKeyValuePair keyValuePairWithKey:[self.cacheDirectory stringByAppendingPathComponent:file]
+																 value:[fileAttributes fileModificationDate]];
+			[pairArray addObject:pair];
 		}
 	}
 	
@@ -237,9 +241,11 @@
 	
 	if (currentSize > self.diskSizeLimit) {
 		NSArray *cachedFilePairs	= [self cacheFilesSortedByModifiedDate];
-		NSUInteger itemIndex		= [cachedFilePairs count] - 1;
-		
-		while (itemIndex >= 0 && currentSize > self.diskSizeLimit) {
+		NSUInteger itemIndex		= [cachedFilePairs count];
+	
+		while (itemIndex > 0 && currentSize > self.diskSizeLimit) {
+			itemIndex--;
+			
 			ZSKeyValuePair *filePair		= (ZSKeyValuePair *)[cachedFilePairs objectAtIndex:itemIndex];
 			NSDictionary *fileAttributes	= [[NSFileManager defaultManager] attributesOfItemAtPath:filePair.key error:nil];
 			
@@ -247,8 +253,6 @@
 				// File removed, deduct size
 				currentSize -= [fileAttributes fileSize];
 			}
-			
-			itemIndex--;
 		}
 		
 		if (self.exclusiveDiskCacheUser) {

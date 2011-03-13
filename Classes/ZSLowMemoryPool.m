@@ -53,7 +53,8 @@
 #pragma mark ZSLowMemoryPool Instance Methods
 
 - (id)init {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		// Create a pool
 		pointerPool = [[NSMutableDictionary alloc] init];
 		
