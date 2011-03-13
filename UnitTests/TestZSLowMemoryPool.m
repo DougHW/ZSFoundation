@@ -70,20 +70,6 @@ const char *byte_to_binary
 	[[ZSLowMemoryPool lowMemoryPool] removePointer:&testString];
 	STAssertTrue(nil != testString, @"Pointer changed to nil incorrectly!");
 	STAssertTrue(1 == [testString2 retainCount], @"Incorrect retain count!");
-	
-	NSLog(@"sizeof(void*) %d", sizeof(void*));
-	NSLog(@"sizeof(CGFloat) %d", sizeof(CGFloat));
-	NSLog(@"sizeof(CGSize) %d", sizeof(CGSize));
-	
-	UIView *aView = nil;
-	UIView *anotherView = [[[UIView alloc] initWithFrame:CGRectMake(50.0, 100.0, 150.0, 200.0)] autorelease];
-	CGSize bSize = anotherView.frame.size;
-	CGSize aSize = aView.frame.size;
-	NSLog(@"nil size %@", NSStringFromCGSize(aSize));
-	
-	ufloat u1;
-	u1.f = aSize.width;
-	NSLog(@"binary nil width %d", u1.u);
 }
 
 - (void)testLowMemoryClear {
