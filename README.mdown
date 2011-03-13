@@ -1,0 +1,51 @@
+ZSFoundation
+========
+
+Licensing
+--------
+SEE LICENSE.txt for licensing information
+
+Description
+------------
+This library is intended to be a supplement to Apple's Cocoa frameworks.  It is organized to be as disjoint as possible, so that components can be reused individually used in projects.  It also has targets to compile universal frameworks, for drop-in use (details in TARGETS section).
+
+Highlights
+--------
+###ZSLRUQueueCache
+This class was really one of the main reasons I wanted to get this library out there.  It's useful for maintaining a disk-backed cache of items.  These items will be ejected from memory and disk based on user-specified constraints, on a "least recently used" basis.
+
+###ZSBool, ZSFloat, ZSInteger, ZSUInteger
+These classes warrant some explanation.  For one, Cocoa already has BOOL, CGFloat, NSInteger and NSUInteger.  Why not just use those?  There are a few problems.
+
+1. Native data types are not first-class citizens in Objective C.  They can't be stored in Object-oriented data structures (NSArray, NSSet, etc).
+
+2. nil cannot be represented.  The convention in Cocoa for representing "no value" for native data types is to use the defined value NSNotFound.  This is defined to be the same as NSIntegerMax.  This is technically incorrect, since NSIntegerMax is a valid value for most situations where it is used to represent a "nil" or "null" value.  It can also lead to problems if other programmers are not aware of the convention, and echo values out to the UI.
+
+3. NSNumber is not statically typed.  The Cocoa frameworks offer a stop-gap solution by providing NSNumber.  The problem is that NSNumber is not statically typed, so there is no clear indication to the compiler, or to users of your code what the intended type is.  There are a wide variety of issues with this.  For example, comparing an NSNumber that wraps an integer with an NSNumber that wraps a float may have unexpected behavior.  Other developers will have to rely on your documentation to avoid this pitfall.
+
+So, the solution we've arrived at in ZSFoundation is to use statically typed wrappers for the more common native data types, in places where it makes sense.  This creates a slight memory overhead, which should be taken into account in high-performance scenarios, or when system constraints are of concern.
+
+***NOTE*** - ZSFloat has some unique issues.  It is provided in order to offer some representative for floating point numbers.  Please read the source code's associated commentary and warnings about the pitfalls of comparing floating point numbers with methods like compare: and isEqual:.
+
+###ZSLowMemoryPool
+The reason for creating this class, is that I often found myself creating little static objects like lookup dictionaries.  I would create these lazily, but I wanted to keep them around for performance reasons.
+
+Often, when you use these types of little helper methods, you use them in bursts.  Maybe a dozen times at once and then not again for a while.  Each successive call may not know if it is the last one though, so it would be a bad idea to release these static collections.
+
+By using this "low memory pool", you can register pointers to pointers and, when a low memory condition arises, it will go through and release all those objects, and set their pointers to nil.  This is also handy in that it saves every class you write from having to set up to listen for this notification.  It can just register the appropriate pointers with the pool and forget about it.
+
+Targets (aka "how to build and use this")
+------
+ZSFoundation has a few different build targets.  Xcode does not allow for the creation of universal libraries or frameworks for iphone.  We use the following targets to overcome this limitation.
+
+* **ZSFoundation-framework**.  This target first runs ZSFoundation-universal_library, and then packages that artifact into a framework folder structure.
+
+* **ZSFoundation-universal_library**.  This target uses a script to detect whether xcode is indicating simulator or device compilation, and compile for the other target as well.  It then combines the two artifacts using the 'lipo' utility, into a single universal library that will work on either platform.
+
+* **UnitTests**.  Runs the unit test suite for the library.
+
+Usage
+-----
+If you want to use this library in your own project, the simplest way is to include the compiled framework.  To do that, build the ZSFoundation-framework target.  Find the ZSFoundation.framework folder inside your build folder and copy/paste it into your project.  In your project, right-click on your project in the Overview window and click "Add -> Existing Framworks".  Click "Add Other" in the next window, and select the ZSFoundation.framwork folder.
+
+Alternatively, you can set this project as a dependency in your own project.  I'll write up instructions for that soon.
