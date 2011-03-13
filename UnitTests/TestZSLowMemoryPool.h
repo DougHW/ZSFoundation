@@ -1,5 +1,5 @@
 //
-//  ZSBool.h
+//  TestZSLowMemoryPool.h
 //
 //	Copyright 2011 Zoosk, Inc.
 //
@@ -16,25 +16,20 @@
 //	limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <SenTestingKit/SenTestingKit.h>
 
 
-/**
- * ZSFoundation NSObject wrapper for a BOOL value.
- *
- * @see README for more detailed information
- */
-@interface ZSBool : NSObject <NSCopying, NSCoding> {
-@private
-	BOOL	value;
+typedef union ufloat {
+	float f;
+	unsigned int u;
+} ufloat;
+
+@interface TestZSLowMemoryPool : SenTestCase {
+	
 }
 
-@property (nonatomic)	BOOL	value;
-
-+ (id)boolWithBool:(BOOL)aValue;
-
-- (id)initWithBool:(BOOL)aValue;
-
-- (NSComparisonResult)compare:(ZSBool *)aZSBool;
+- (void)testAddAndRemove;
+- (void)testLowMemoryClear;
+- (void)testThreadSingleton;
 
 @end

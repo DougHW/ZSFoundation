@@ -23,7 +23,11 @@
 
 @synthesize value;
 
-- (id)initWithValue:(NSUInteger)aValue {
++ (id)uintegerWithUInteger:(NSUInteger)aValue {
+	return [[[ZSUInteger alloc] initWithUInteger:aValue] autorelease];
+}
+
+- (id)initWithUInteger:(NSUInteger)aValue {
 	if (self = [super init]) {
 		value = aValue;
 	}
@@ -40,6 +44,10 @@
 	} else {
 		return NSOrderedDescending;
 	}
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ZSUInteger: %d}", self.value];
 }
 
 

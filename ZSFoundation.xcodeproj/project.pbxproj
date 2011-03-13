@@ -27,6 +27,10 @@
 		F0AA583F13136BF900B1809A /* TestZSFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA583A13136BF900B1809A /* TestZSFloat.m */; };
 		F0AA584013136BF900B1809A /* TestZSInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA583C13136BF900B1809A /* TestZSInteger.m */; };
 		F0AA584113136BF900B1809A /* TestZSUInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA583E13136BF900B1809A /* TestZSUInteger.m */; };
+		F0AA58F11314D04C00B1809A /* ZSLowMemoryPool.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA58F01314D04C00B1809A /* ZSLowMemoryPool.m */; };
+		F0AA58F21314D04C00B1809A /* ZSLowMemoryPool.h in Headers */ = {isa = PBXBuildFile; fileRef = F0AA58EF1314D04C00B1809A /* ZSLowMemoryPool.h */; };
+		F0AA58F31314D04C00B1809A /* ZSLowMemoryPool.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA58F01314D04C00B1809A /* ZSLowMemoryPool.m */; };
+		F0AA58FB1314E16500B1809A /* TestZSLowMemoryPool.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA58FA1314E16500B1809A /* TestZSLowMemoryPool.m */; };
 		F0E14236130CAB1B00C23ACB /* TestZSLRUQueueCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053D1130C8B4F0093E979 /* TestZSLRUQueueCache.m */; };
 		F0E1424F130CAC2300C23ACB /* ZSBool.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053AD130C88D90093E979 /* ZSBool.m */; };
 		F0E14250130CAC2300C23ACB /* ZSFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053AF130C88D90093E979 /* ZSFloat.m */; };
@@ -95,6 +99,10 @@
 		F0AA583C13136BF900B1809A /* TestZSInteger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZSInteger.m; sourceTree = "<group>"; };
 		F0AA583D13136BF900B1809A /* TestZSUInteger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestZSUInteger.h; sourceTree = "<group>"; };
 		F0AA583E13136BF900B1809A /* TestZSUInteger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZSUInteger.m; sourceTree = "<group>"; };
+		F0AA58EF1314D04C00B1809A /* ZSLowMemoryPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLowMemoryPool.h; sourceTree = "<group>"; };
+		F0AA58F01314D04C00B1809A /* ZSLowMemoryPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLowMemoryPool.m; sourceTree = "<group>"; };
+		F0AA58F91314E16500B1809A /* TestZSLowMemoryPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestZSLowMemoryPool.h; sourceTree = "<group>"; };
+		F0AA58FA1314E16500B1809A /* TestZSLowMemoryPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZSLowMemoryPool.m; sourceTree = "<group>"; };
 		F0E142B5130CAD6300C23ACB /* gtm copy 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gtm copy 1.png"; sourceTree = "<group>"; };
 		F0E142B6130CAD6300C23ACB /* gtm copy 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gtm copy 2.png"; sourceTree = "<group>"; };
 		F0E142B7130CAD6300C23ACB /* gtm copy 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gtm copy 3.png"; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 		0867D691FE84028FC02AAC07 /* ZSFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				F0AA58F81314D9E300B1809A /* Categories */,
 				F00053AB130C88D90093E979 /* Classes */,
 				F00053CF130C8B260093E979 /* UnitTests */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -181,6 +190,8 @@
 				F00053B1130C88D90093E979 /* ZSInteger.m */,
 				F00053C0130C88F70093E979 /* ZSKeyValuePair.h */,
 				F00053C1130C88F70093E979 /* ZSKeyValuePair.m */,
+				F0AA58EF1314D04C00B1809A /* ZSLowMemoryPool.h */,
+				F0AA58F01314D04C00B1809A /* ZSLowMemoryPool.m */,
 				F00053B2130C88D90093E979 /* ZSLRUQueueCache.h */,
 				F00053B3130C88D90093E979 /* ZSLRUQueueCache.m */,
 				F00053B4130C88D90093E979 /* ZSUInteger.h */,
@@ -201,6 +212,8 @@
 				F0AA583A13136BF900B1809A /* TestZSFloat.m */,
 				F0AA583B13136BF900B1809A /* TestZSInteger.h */,
 				F0AA583C13136BF900B1809A /* TestZSInteger.m */,
+				F0AA58F91314E16500B1809A /* TestZSLowMemoryPool.h */,
+				F0AA58FA1314E16500B1809A /* TestZSLowMemoryPool.m */,
 				F00053D0130C8B4F0093E979 /* TestZSLRUQueueCache.h */,
 				F00053D1130C8B4F0093E979 /* TestZSLRUQueueCache.m */,
 				F0AA583D13136BF900B1809A /* TestZSUInteger.h */,
@@ -216,6 +229,13 @@
 				F00053D5130C8BBB0093E979 /* TestUtility.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F0AA58F81314D9E300B1809A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		F0E142B3130CAD3300C23ACB /* Resources */ = {
@@ -245,6 +265,7 @@
 				F00053C2130C88F70093E979 /* ZSKeyValuePair.h in Headers */,
 				F0E144DD130CECC000C23ACB /* ZSFoundation.h in Headers */,
 				F0AA573613123D2B00B1809A /* TestZSBool.h in Headers */,
+				F0AA58F21314D04C00B1809A /* ZSLowMemoryPool.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +444,7 @@
 				F00053BD130C88D90093E979 /* ZSLRUQueueCache.m in Sources */,
 				F00053BF130C88D90093E979 /* ZSUInteger.m in Sources */,
 				F00053C3130C88F70093E979 /* ZSKeyValuePair.m in Sources */,
+				F0AA58F31314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +464,8 @@
 				F0AA583F13136BF900B1809A /* TestZSFloat.m in Sources */,
 				F0AA584013136BF900B1809A /* TestZSInteger.m in Sources */,
 				F0AA584113136BF900B1809A /* TestZSUInteger.m in Sources */,
+				F0AA58F11314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
+				F0AA58FB1314E16500B1809A /* TestZSLowMemoryPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

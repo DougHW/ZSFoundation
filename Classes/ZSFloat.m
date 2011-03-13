@@ -23,7 +23,11 @@
 
 @synthesize value;
 
-- (id)initWithValue:(CGFloat)aValue {
++ (id)floatWithFloat:(CGFloat)aValue {
+	return [[[ZSFloat alloc] initWithFloat:aValue] autorelease];
+}
+
+- (id)initWithFloat:(CGFloat)aValue {
 	if (self = [super init]) {
 		value = aValue;
 	}
@@ -40,6 +44,10 @@
 	} else {
 		return NSOrderedDescending;
 	}
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ZSFloat: %f}", self.value];
 }
 
 

@@ -22,5 +22,6 @@
 #import <ZSFoundation/ZSFloat.h>
 #import <ZSFoundation/ZSInteger.h>
 #import <ZSFoundation/ZSKeyValuePair.h>
+#import <ZSFoundation/ZSLowMemoryPool.h>
 #import <ZSFoundation/ZSLRUQueueCache.h>
 #import <ZSFoundation/ZSUInteger.h>

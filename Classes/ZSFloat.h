@@ -36,7 +36,10 @@
 
 @property (nonatomic)	CGFloat	value;
 
-- (id)initWithValue:(CGFloat)aValue;
++ (id)floatWithFloat:(CGFloat)aValue;
+
+- (id)initWithFloat:(CGFloat)aValue;
+
 - (NSComparisonResult)compare:(ZSFloat *)aZSFloat;
 
 @end

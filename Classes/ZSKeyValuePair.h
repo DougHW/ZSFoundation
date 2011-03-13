@@ -34,6 +34,8 @@
 @property (nonatomic, retain)	id	key;
 @property (nonatomic, retain)	id	value;
 
++ (id)keyValuePairWithKey:(id)aKey value:(id)aValue;
+
 /**
  * INITIALIZER (DESIGNATED)
  * This initializer will create a ZSKeyValuePair with a given key and value.
@@ -42,6 +44,6 @@
  * @param	aValue		The value
  * @return				A ZSKeyValuePair object
  */
-- (id)initWithKey:(id)aKey andValue:(id)aValue;
+- (id)initWithKey:(id)aKey value:(id)aValue;
 
 @end
