@@ -7,22 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91E2D4FA133A662000ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E2D4FB133A662000ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */; };
+		91E2D4FD133A8E8000ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */; };
+		91E2D4FE133A8F0700ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E2D508133A96D300ACB3CE /* TestUIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D500133A913B00ACB3CE /* TestUIImage+NSCoding.m */; };
 		AA747D9F0F9514B9006C5449 /* ZSFoundation_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ZSFoundation_Prefix.pch */; settings = {ATTRIBUTES = (Private, ); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		F00053B6130C88D90093E979 /* ZSBool.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AC130C88D90093E979 /* ZSBool.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053B6130C88D90093E979 /* ZSBool.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AC130C88D90093E979 /* ZSBool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053B7130C88D90093E979 /* ZSBool.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053AD130C88D90093E979 /* ZSBool.m */; };
-		F00053B8130C88D90093E979 /* ZSFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AE130C88D90093E979 /* ZSFloat.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053B8130C88D90093E979 /* ZSFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AE130C88D90093E979 /* ZSFloat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053B9130C88D90093E979 /* ZSFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053AF130C88D90093E979 /* ZSFloat.m */; };
-		F00053BA130C88D90093E979 /* ZSInteger.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B0130C88D90093E979 /* ZSInteger.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053BA130C88D90093E979 /* ZSInteger.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B0130C88D90093E979 /* ZSInteger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053BB130C88D90093E979 /* ZSInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053B1130C88D90093E979 /* ZSInteger.m */; };
-		F00053BC130C88D90093E979 /* ZSLRUQueueCache.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B2130C88D90093E979 /* ZSLRUQueueCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053BC130C88D90093E979 /* ZSLRUQueueCache.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B2130C88D90093E979 /* ZSLRUQueueCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053BD130C88D90093E979 /* ZSLRUQueueCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053B3130C88D90093E979 /* ZSLRUQueueCache.m */; };
-		F00053BE130C88D90093E979 /* ZSUInteger.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B4130C88D90093E979 /* ZSUInteger.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053BE130C88D90093E979 /* ZSUInteger.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B4130C88D90093E979 /* ZSUInteger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053BF130C88D90093E979 /* ZSUInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053B5130C88D90093E979 /* ZSUInteger.m */; };
-		F00053C2130C88F70093E979 /* ZSKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053C0130C88F70093E979 /* ZSKeyValuePair.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F00053C2130C88F70093E979 /* ZSKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053C0130C88F70093E979 /* ZSKeyValuePair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F00053C3130C88F70093E979 /* ZSKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053C1130C88F70093E979 /* ZSKeyValuePair.m */; };
 		F00053D6130C8BBB0093E979 /* TestUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F00053D5130C8BBB0093E979 /* TestUtility.m */; };
-		F0AA573613123D2B00B1809A /* TestZSBool.h in Headers */ = {isa = PBXBuildFile; fileRef = F0AA573313123D2B00B1809A /* TestZSBool.h */; };
 		F0AA580C13136A9300B1809A /* TestZSBool.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA573413123D2B00B1809A /* TestZSBool.m */; };
 		F0AA583F13136BF900B1809A /* TestZSFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA583A13136BF900B1809A /* TestZSFloat.m */; };
 		F0AA584013136BF900B1809A /* TestZSInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA583C13136BF900B1809A /* TestZSInteger.m */; };
@@ -42,7 +46,7 @@
 		F0E142BA130CAD6300C23ACB /* gtm copy 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E142B6130CAD6300C23ACB /* gtm copy 2.png */; };
 		F0E142BB130CAD6300C23ACB /* gtm copy 3.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E142B7130CAD6300C23ACB /* gtm copy 3.png */; };
 		F0E142BC130CAD6300C23ACB /* gtm.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E142B8130CAD6300C23ACB /* gtm.png */; };
-		F0E144DD130CECC000C23ACB /* ZSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = F0E144DA130CECC000C23ACB /* ZSFoundation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F0E144DD130CECC000C23ACB /* ZSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = F0E144DA130CECC000C23ACB /* ZSFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0E14541130CF4A000C23ACB /* ZSBool.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AC130C88D90093E979 /* ZSBool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0E14542130CF4A000C23ACB /* ZSFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AE130C88D90093E979 /* ZSFloat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0E14543130CF4A000C23ACB /* ZSInteger.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053B0130C88D90093E979 /* ZSInteger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,6 +74,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+NSCoding.h"; path = "ZSFoundation.xcodeproj/UIImage+NSCoding.h"; sourceTree = SOURCE_ROOT; };
+		91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+NSCoding.m"; path = "ZSFoundation.xcodeproj/UIImage+NSCoding.m"; sourceTree = SOURCE_ROOT; };
+		91E2D4FF133A913A00ACB3CE /* TestUIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestUIImage+NSCoding.h"; sourceTree = "<group>"; };
+		91E2D500133A913B00ACB3CE /* TestUIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestUIImage+NSCoding.m"; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ZSFoundation_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSFoundation_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libZSFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZSFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +214,8 @@
 			children = (
 				F0E142B3130CAD3300C23ACB /* Resources */,
 				F00053D3130C8BAA0093E979 /* Utilities */,
+				91E2D4FF133A913A00ACB3CE /* TestUIImage+NSCoding.h */,
+				91E2D500133A913B00ACB3CE /* TestUIImage+NSCoding.m */,
 				F0AA573313123D2B00B1809A /* TestZSBool.h */,
 				F0AA573413123D2B00B1809A /* TestZSBool.m */,
 				F0AA583913136BF900B1809A /* TestZSFloat.h */,
@@ -234,6 +244,8 @@
 		F0AA58F81314D9E300B1809A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */,
+				91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -256,7 +268,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA747D9F0F9514B9006C5449 /* ZSFoundation_Prefix.pch in Headers */,
+				91E2D4FE133A8F0700ACB3CE /* UIImage+NSCoding.h in Headers */,
 				F00053B6130C88D90093E979 /* ZSBool.h in Headers */,
 				F00053B8130C88D90093E979 /* ZSFloat.h in Headers */,
 				F00053BA130C88D90093E979 /* ZSInteger.h in Headers */,
@@ -264,7 +276,7 @@
 				F00053BE130C88D90093E979 /* ZSUInteger.h in Headers */,
 				F00053C2130C88F70093E979 /* ZSKeyValuePair.h in Headers */,
 				F0E144DD130CECC000C23ACB /* ZSFoundation.h in Headers */,
-				F0AA573613123D2B00B1809A /* TestZSBool.h in Headers */,
+				AA747D9F0F9514B9006C5449 /* ZSFoundation_Prefix.pch in Headers */,
 				F0AA58F21314D04C00B1809A /* ZSLowMemoryPool.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +285,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E2D4FA133A662000ACB3CE /* UIImage+NSCoding.h in Headers */,
 				F0E14541130CF4A000C23ACB /* ZSBool.h in Headers */,
 				F0E14542130CF4A000C23ACB /* ZSFloat.h in Headers */,
 				F0E14543130CF4A000C23ACB /* ZSInteger.h in Headers */,
@@ -445,6 +458,7 @@
 				F00053BF130C88D90093E979 /* ZSUInteger.m in Sources */,
 				F00053C3130C88F70093E979 /* ZSKeyValuePair.m in Sources */,
 				F0AA58F31314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
+				91E2D4FD133A8E8000ACB3CE /* UIImage+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +480,8 @@
 				F0AA584113136BF900B1809A /* TestZSUInteger.m in Sources */,
 				F0AA58F11314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
 				F0AA58FB1314E16500B1809A /* TestZSLowMemoryPool.m in Sources */,
+				91E2D4FB133A662000ACB3CE /* UIImage+NSCoding.m in Sources */,
+				91E2D508133A96D300ACB3CE /* TestUIImage+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +537,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ZSFoundation_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=*]" = 3.1;
 				PRODUCT_NAME = ZSFoundation;
 				SDKROOT = iphoneos;
 			};
@@ -598,6 +616,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "UnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=*]" = 3.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -647,6 +667,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "ZSFoundation-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
 				OTHER_LDFLAGS = "";

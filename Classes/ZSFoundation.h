@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
+// Categories
+#import <ZSFoundation/UIImage+NSCoding.h>
+
+// Classes
 #import <ZSFoundation/ZSBool.h>
 #import <ZSFoundation/ZSFloat.h>
 #import <ZSFoundation/ZSInteger.h>
