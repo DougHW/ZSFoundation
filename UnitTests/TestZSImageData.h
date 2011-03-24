@@ -1,5 +1,5 @@
 //
-//  ZSFoundation.h
+//  TestZSImageData.h
 //
 //	Copyright 2011 Zoosk, Inc.
 //
@@ -16,17 +16,12 @@
 //	limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <SenTestingKit/SenTestingKit.h>
 
-// Categories
-#import <ZSFoundation/UIImage+NSCoding.h>
+@interface TestZSImageData : SenTestCase {
+	
+}
 
-// Classes
-#import <ZSFoundation/ZSBool.h>
-#import <ZSFoundation/ZSFloat.h>
-#import <ZSFoundation/ZSImageData.h>
-#import <ZSFoundation/ZSInteger.h>
-#import <ZSFoundation/ZSKeyValuePair.h>
-#import <ZSFoundation/ZSLowMemoryPool.h>
-#import <ZSFoundation/ZSLRUQueueCache.h>
-#import <ZSFoundation/ZSUInteger.h>
+- (void)testEncodeDecode;
+
+@end

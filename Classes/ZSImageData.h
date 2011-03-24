@@ -1,5 +1,5 @@
 //
-//  ZSFoundation.h
+//  ZSImageData.h
 //
 //	Copyright 2011 Zoosk, Inc.
 //
@@ -17,16 +17,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// Categories
-#import <ZSFoundation/UIImage+NSCoding.h>
 
-// Classes
-#import <ZSFoundation/ZSBool.h>
-#import <ZSFoundation/ZSFloat.h>
-#import <ZSFoundation/ZSImageData.h>
-#import <ZSFoundation/ZSInteger.h>
-#import <ZSFoundation/ZSKeyValuePair.h>
-#import <ZSFoundation/ZSLowMemoryPool.h>
-#import <ZSFoundation/ZSLRUQueueCache.h>
-#import <ZSFoundation/ZSUInteger.h>
+/**
+ * The purpose of this class is to provide a vehicle for archiving an NSData
+ * object that represents an underlying UIImage.
+ * This way, the raw image data can be encoded, and a UIImage will be created
+ * whenever it is decoded.
+ */
+@interface ZSImageData : NSObject <NSCopying, NSCoding> {
+@private
+	NSData	*dataValue;
+}
+
+@property (nonatomic, retain)	NSData		*dataValue;
+
+- (id)initWithData:(NSData *)aData;
+
+@end

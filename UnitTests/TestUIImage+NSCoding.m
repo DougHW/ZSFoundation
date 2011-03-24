@@ -1,9 +1,19 @@
 //
 //  TestUIImage+NSCoding.m
-//  ZSFoundation
 //
-//  Created by Doug Wehmeier on 3/23/11.
-//  Copyright 2011 Zoosk. All rights reserved.
+//	Copyright 2011 Zoosk, Inc.
+//
+//	Licensed under the Apache License, Version 2.0 (the "License");
+//	you may not use this file except in compliance with the License.
+//	You may obtain a copy of the License at
+//
+//	http://www.apache.org/licenses/LICENSE-2.0
+//
+//	Unless required by applicable law or agreed to in writing, software
+//	distributed under the License is distributed on an "AS IS" BASIS,
+//	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//	See the License for the specific language governing permissions and
+//	limitations under the License.
 //
 
 #import "TestUIImage+NSCoding.h"
@@ -18,11 +28,11 @@
 - (UIImage *)getTestImage {
 	NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gtm" ofType:@"png"];
 	STAssertNotNil(imagePath, @"Couldn't find a path to sample image");
-	NSData *cachedData = [[NSData alloc] initWithContentsOfFile:imagePath
+	NSData *imageData = [[[NSData alloc] initWithContentsOfFile:imagePath
 														options:NSDataReadingUncached
-														  error:nil];
+														  error:nil] autorelease];
 	
-	UIImage *testImage = [UIImage imageWithData:cachedData];
+	UIImage *testImage = [UIImage imageWithData:imageData];
 	STAssertNotNil(testImage, @"Test image was not loaded properly!");
 	
 	return testImage;
