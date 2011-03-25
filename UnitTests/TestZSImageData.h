@@ -23,5 +23,6 @@
 }
 
 - (void)testEncodeDecode;
+- (void)testCaching;
 
 @end

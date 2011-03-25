@@ -33,6 +33,8 @@
 
 @property (nonatomic, retain)	NSData		*dataValue;
 
++ (ZSImageData *)imageDataWithData:(NSData *)aData;
+
 - (id)initWithData:(NSData *)aData;
 
 @end

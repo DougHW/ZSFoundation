@@ -131,9 +131,9 @@
 
 - (NSUInteger)countInMemory;
 
-- (id<NSCoding>)objectForKey:(id)aKey;
+- (id<NSObject, NSCoding>)objectForKey:(id)aKey;
 
-- (void)setObject:(id<NSCoding>)anObject forKey:(id)aKey;
+- (void)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey;
 
 - (void)removeAllObjectsFromMemory;
 

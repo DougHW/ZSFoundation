@@ -26,7 +26,7 @@
 @synthesize cache;
 
 - (void)setUp {
-    self.cache = [[[ZSLRUQueueCache alloc] initWithCacheDirectory:[[TestUtility cachePath] stringByAppendingPathComponent:@"lruCache"]] autorelease];
+	self.cache = [[[ZSLRUQueueCache alloc] initWithCacheDirectory:[[TestUtility cachePath] stringByAppendingPathComponent:@"lruCache"]] autorelease];
 	[self.cache removeAllObjectsFromDisk];
 }
 

@@ -17,7 +17,9 @@
 //
 
 #import "ZSLRUQueueCache.h"
+#import "UIImage+NSCoding.h"
 #import "ZSKeyValuePair.h"
+#import "ZSImageData.h"
 
 
 #define ZSLRUQueueCache_DYNAMIC_RESIZE_FACTOR 0.7
@@ -74,6 +76,18 @@
 - (id)initWithCacheDirectory:(NSString *)aCacheDirectory {
     self = [self initWithCacheDirectory:aCacheDirectory memoryCountLimit:0 diskSizeLimit:0];
 	if (self) {
+		// Nothing to do
+	}
+	return self;
+}
+
+- (id)initWithCacheDirectory:(NSString *)aCacheDirectory memoryCountLimit:(NSUInteger)memoryLimit diskSizeLimit:(NSUInteger)diskLimit {
+    self = [super init];
+	if (self) {
+		cacheDirectory		= [aCacheDirectory copy];
+		memoryCountLimit	= memoryLimit;
+		diskSizeLimit		= diskLimit;
+		
 		exclusiveDiskCacheUser	= YES;
 		diskSize				= 0;
 		
@@ -94,16 +108,6 @@
 			// Disk cache directory already exists, calculate size
 			diskSize = [self computeDiskCacheSize];
 		}
-	}
-	return self;
-}
-
-- (id)initWithCacheDirectory:(NSString *)aCacheDirectory memoryCountLimit:(NSUInteger)memoryLimit diskSizeLimit:(NSUInteger)diskLimit {
-    self = [super init];
-	if (self) {
-		cacheDirectory		= [aCacheDirectory copy];
-		memoryCountLimit	= memoryLimit;
-		diskSizeLimit		= diskLimit;
 	}
 	return self;
 }
@@ -265,7 +269,7 @@
 	return [self.keyQueue count];
 }
 
-- (id<NSCoding>)objectForKey:(id)aKey {
+- (id<NSObject, NSCoding>)objectForKey:(id)aKey {
 	if (!aKey) {
 		return nil;
 	}
@@ -310,10 +314,10 @@
 	return [[returnObject retain] autorelease];
 }
 
-- (void)setObject:(id<NSCoding>)anObject forKey:(id)aKey {
+- (void)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey {
 	if (!aKey) {
 		@throw [NSException exceptionWithName:@"NSInvalidArgumentException" reason:@"aKey cannot be nil when adding an object to ZSLRUQueueCache!" userInfo:nil];
-	} else if (!aKey) {
+	} else if (!anObject) {
 		@throw [NSException exceptionWithName:@"NSInvalidArgumentException" reason:@"anOjbect cannot be nil when adding an object to ZSLRUQueueCache!" userInfo:nil];
 	}
 	
@@ -325,7 +329,12 @@
 	[self.keyQueue addObject:aKey];
 	
 	// Add to memory cache
-	[self.memoryCache setObject:anObject forKey:aKey];
+	if ([anObject isKindOfClass:[ZSImageData class]]) {
+		// If this is an image data object, cache an actual UIImage in memory
+		[self.memoryCache setObject:[UIImage imageWithData:((ZSImageData *)anObject).dataValue] forKey:aKey];
+	} else {
+		[self.memoryCache setObject:anObject forKey:aKey];
+}
 	
 	// Add to disk cache
 	NSMutableData *data			= [NSMutableData data];

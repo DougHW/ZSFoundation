@@ -24,6 +24,10 @@
 
 @synthesize dataValue;
 
++ (ZSImageData *)imageDataWithData:(NSData *)aData {
+	return [[[ZSImageData alloc] initWithData:aData] autorelease];
+}
+
 - (id)initWithData:(NSData *)aData {
 	self = [super init];
 	if (self) {

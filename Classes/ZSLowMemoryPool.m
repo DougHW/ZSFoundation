@@ -25,8 +25,6 @@
 
 @property (nonatomic, retain)	NSMutableDictionary		*pointerPool;
 
-- (void)lowMemoryWarning;
-
 @end
 
 
@@ -59,7 +57,7 @@
 		pointerPool = [[NSMutableDictionary alloc] init];
 		
 		// Listen for low memory conditions
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lowMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(empty) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 	}
     return self;
 }
@@ -96,7 +94,7 @@
 	[self.pointerPool removeObjectForKey:pointerValue];
 }
 
-- (void)lowMemoryWarning {
+- (void)empty {
 	for (NSValue *key in self.pointerPool) {
 		id<NSObject> *pointer = [key pointerValue];
 		

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91E2D4FA133A662000ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		91E2D4FB133A662000ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */; };
-		91E2D4FD133A8E8000ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */; };
-		91E2D4FE133A8F0700ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D508133A96D300ACB3CE /* TestUIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D500133A913B00ACB3CE /* TestUIImage+NSCoding.m */; };
 		91E2D50B133AA51A00ACB3CE /* ZSImageData.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D509133AA51700ACB3CE /* ZSImageData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D50D133AA5C400ACB3CE /* ZSImageData.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D509133AA51700ACB3CE /* ZSImageData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,9 +14,14 @@
 		91E2D50F133AA5C700ACB3CE /* ZSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D50A133AA51800ACB3CE /* ZSImageData.m */; };
 		91E2D512133AA5ED00ACB3CE /* TestZSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D511133AA5EA00ACB3CE /* TestZSImageData.m */; };
 		91E2D513133ABE7D00ACB3CE /* ZSLowMemoryPool.h in Headers */ = {isa = PBXBuildFile; fileRef = F0AA58EF1314D04C00B1809A /* ZSLowMemoryPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		91E2D516133ABF1E00ACB3CE /* ZSDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */; };
+		91E2D516133ABF1E00ACB3CE /* ZSDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D517133ABF1E00ACB3CE /* ZSDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */; };
 		91E2D518133ABF1E00ACB3CE /* ZSDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */; };
+		91E2D519133ACF2100ACB3CE /* ZSDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E2D539133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D537133C3D0C00ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E2D53A133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D537133C3D0C00ACB3CE /* UIImage+NSCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E2D53B133C3D0C00ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D538133C3D0C00ACB3CE /* UIImage+NSCoding.m */; };
+		91E2D53C133C3D0C00ACB3CE /* UIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D538133C3D0C00ACB3CE /* UIImage+NSCoding.m */; };
 		AA747D9F0F9514B9006C5449 /* ZSFoundation_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ZSFoundation_Prefix.pch */; settings = {ATTRIBUTES = (Private, ); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		F00053B6130C88D90093E979 /* ZSBool.h in Headers */ = {isa = PBXBuildFile; fileRef = F00053AC130C88D90093E979 /* ZSBool.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,8 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+NSCoding.h"; path = "ZSFoundation.xcodeproj/UIImage+NSCoding.h"; sourceTree = SOURCE_ROOT; };
-		91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+NSCoding.m"; path = "ZSFoundation.xcodeproj/UIImage+NSCoding.m"; sourceTree = SOURCE_ROOT; };
 		91E2D4FF133A913A00ACB3CE /* TestUIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestUIImage+NSCoding.h"; sourceTree = "<group>"; };
 		91E2D500133A913B00ACB3CE /* TestUIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestUIImage+NSCoding.m"; sourceTree = "<group>"; };
 		91E2D509133AA51700ACB3CE /* ZSImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSImageData.h; sourceTree = "<group>"; };
@@ -93,6 +92,8 @@
 		91E2D511133AA5EA00ACB3CE /* TestZSImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZSImageData.m; sourceTree = "<group>"; };
 		91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDataFetcher.h; sourceTree = "<group>"; };
 		91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDataFetcher.m; sourceTree = "<group>"; };
+		91E2D537133C3D0C00ACB3CE /* UIImage+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NSCoding.h"; sourceTree = "<group>"; };
+		91E2D538133C3D0C00ACB3CE /* UIImage+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NSCoding.m"; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ZSFoundation_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSFoundation_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libZSFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZSFoundation.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,7 +175,7 @@
 		0867D691FE84028FC02AAC07 /* ZSFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				F0AA58F81314D9E300B1809A /* Categories */,
+				91E2D536133C3CBE00ACB3CE /* Categories */,
 				F00053AB130C88D90093E979 /* Classes */,
 				F00053CF130C8B260093E979 /* UnitTests */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -202,11 +203,22 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		91E2D536133C3CBE00ACB3CE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D537133C3D0C00ACB3CE /* UIImage+NSCoding.h */,
+				91E2D538133C3D0C00ACB3CE /* UIImage+NSCoding.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		F00053AB130C88D90093E979 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				F00053AC130C88D90093E979 /* ZSBool.h */,
 				F00053AD130C88D90093E979 /* ZSBool.m */,
+				91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */,
+				91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */,
 				F00053AE130C88D90093E979 /* ZSFloat.h */,
 				F00053AF130C88D90093E979 /* ZSFloat.m */,
 				91E2D509133AA51700ACB3CE /* ZSImageData.h */,
@@ -222,8 +234,6 @@
 				F00053B4130C88D90093E979 /* ZSUInteger.h */,
 				F00053B5130C88D90093E979 /* ZSUInteger.m */,
 				F0E144DA130CECC000C23ACB /* ZSFoundation.h */,
-				91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */,
-				91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -262,15 +272,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		F0AA58F81314D9E300B1809A /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				91E2D4F8133A662000ACB3CE /* UIImage+NSCoding.h */,
-				91E2D4F9133A662000ACB3CE /* UIImage+NSCoding.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
 		F0E142B3130CAD3300C23ACB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +290,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91E2D4FE133A8F0700ACB3CE /* UIImage+NSCoding.h in Headers */,
 				F00053B6130C88D90093E979 /* ZSBool.h in Headers */,
 				F00053B8130C88D90093E979 /* ZSFloat.h in Headers */,
 				F00053BA130C88D90093E979 /* ZSInteger.h in Headers */,
@@ -301,6 +301,7 @@
 				F0AA58F21314D04C00B1809A /* ZSLowMemoryPool.h in Headers */,
 				91E2D50D133AA5C400ACB3CE /* ZSImageData.h in Headers */,
 				91E2D516133ABF1E00ACB3CE /* ZSDataFetcher.h in Headers */,
+				91E2D539133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +309,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91E2D4FA133A662000ACB3CE /* UIImage+NSCoding.h in Headers */,
 				F0E14541130CF4A000C23ACB /* ZSBool.h in Headers */,
 				F0E14542130CF4A000C23ACB /* ZSFloat.h in Headers */,
 				F0E14543130CF4A000C23ACB /* ZSInteger.h in Headers */,
@@ -318,6 +318,8 @@
 				F0E14547130CF4A000C23ACB /* ZSFoundation.h in Headers */,
 				91E2D50B133AA51A00ACB3CE /* ZSImageData.h in Headers */,
 				91E2D513133ABE7D00ACB3CE /* ZSLowMemoryPool.h in Headers */,
+				91E2D519133ACF2100ACB3CE /* ZSDataFetcher.h in Headers */,
+				91E2D53A133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,9 +485,9 @@
 				F00053BF130C88D90093E979 /* ZSUInteger.m in Sources */,
 				F00053C3130C88F70093E979 /* ZSKeyValuePair.m in Sources */,
 				F0AA58F31314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
-				91E2D4FD133A8E8000ACB3CE /* UIImage+NSCoding.m in Sources */,
 				91E2D50E133AA5C600ACB3CE /* ZSImageData.m in Sources */,
 				91E2D517133ABF1E00ACB3CE /* ZSDataFetcher.m in Sources */,
+				91E2D53B133C3D0C00ACB3CE /* UIImage+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,11 +509,11 @@
 				F0AA584113136BF900B1809A /* TestZSUInteger.m in Sources */,
 				F0AA58F11314D04C00B1809A /* ZSLowMemoryPool.m in Sources */,
 				F0AA58FB1314E16500B1809A /* TestZSLowMemoryPool.m in Sources */,
-				91E2D4FB133A662000ACB3CE /* UIImage+NSCoding.m in Sources */,
 				91E2D508133A96D300ACB3CE /* TestUIImage+NSCoding.m in Sources */,
 				91E2D50F133AA5C700ACB3CE /* ZSImageData.m in Sources */,
 				91E2D512133AA5ED00ACB3CE /* TestZSImageData.m in Sources */,
 				91E2D518133ABF1E00ACB3CE /* ZSDataFetcher.m in Sources */,
+				91E2D53C133C3D0C00ACB3CE /* UIImage+NSCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

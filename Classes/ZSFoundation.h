@@ -23,6 +23,7 @@
 
 // Classes
 #import <ZSFoundation/ZSBool.h>
+#import <ZSFoundation/ZSDataFetcher.h>
 #import <ZSFoundation/ZSFloat.h>
 #import <ZSFoundation/ZSImageData.h>
 #import <ZSFoundation/ZSInteger.h>

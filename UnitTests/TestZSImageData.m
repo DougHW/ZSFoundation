@@ -17,12 +17,15 @@
 //
 
 #import "TestZSImageData.h"
+#import "TestUtility.h"
 #import "ZSImageData.h"
+#import "ZSLRUQueueCache.h"
 
 
 @implementation TestZSImageData
 
 - (void)testEncodeDecode {
+	// Get image data
 	NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gtm" ofType:@"png"];
 	STAssertNotNil(imagePath, @"Couldn't find a path to sample image");
 	NSData *imageData = [[[NSData alloc] initWithContentsOfFile:imagePath
@@ -48,6 +51,33 @@
 	STAssertNotNil(decodedImage, @"Decoded image was nil!");
 	STAssertTrue(decodedImage.size.width > 0, @"Decoded image width was zero!");
 	STAssertTrue(decodedImage.size.height > 0, @"Decoded image width was zero!");
+}
+
+- (void)testCaching {
+	ZSLRUQueueCache *cache = [[[ZSLRUQueueCache alloc] initWithCacheDirectory:[[TestUtility cachePath] stringByAppendingPathComponent:@"lruCache"]] autorelease];
+	[cache removeAllObjectsFromDisk];
+	
+	// Get image data
+	NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"gtm" ofType:@"png"];
+	STAssertNotNil(imagePath, @"Couldn't find a path to sample image");
+	NSData *imageData = [[[NSData alloc] initWithContentsOfFile:imagePath
+														options:NSDataReadingUncached
+														  error:nil] autorelease];
+	STAssertNotNil(imageData, @"NSData was nil!");
+	ZSImageData *wrappedData = [[[ZSImageData alloc] initWithData:imageData] autorelease];
+	STAssertNotNil(wrappedData, @"ZSImageData was nil!");
+	
+	[cache setObject:wrappedData forKey:@"testObject"];
+	
+	id<NSObject, NSCoding> uncachedImage = [cache objectForKey:@"testObject"];
+	STAssertTrue([uncachedImage isKindOfClass:[UIImage class]], @"Uncached ZSImageData was not a UIImage!");
+	STAssertFalse([uncachedImage isKindOfClass:[ZSImageData class]], @"Uncached ZSImageData was a ZSImageData!");
+	
+	// Fake a low memory event
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:UIApplicationDidReceiveMemoryWarningNotification object:nil]];
+	
+	uncachedImage = [cache objectForKey:@"testObject"];
+	STAssertTrue([uncachedImage isKindOfClass:[UIImage class]], @"Uncached ZSImageData was not a UIImage!");
 }
 
 @end

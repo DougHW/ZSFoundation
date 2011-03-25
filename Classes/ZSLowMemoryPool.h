@@ -50,4 +50,9 @@
  */
 - (void)removePointer:(id<NSObject> *)object;
 
+/**
+ * Releases all pointers and sets them to nil
+ */
+- (void)empty;
+
 @end
