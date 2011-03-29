@@ -19,7 +19,6 @@
 #import "ZSLRUQueueCache.h"
 #import "UIImage+NSCoding.h"
 #import "ZSKeyValuePair.h"
-#import "ZSImageData.h"
 
 
 #define ZSLRUQueueCache_DYNAMIC_RESIZE_FACTOR 0.7
@@ -52,6 +51,12 @@
  * Removes items from disk cache until total size < diskSizeLimit
  */
 - (void)removeDiskItemsToLimit;
+
+- (id<NSObject, NSCoding>)objectInMemoryForKey:(id)aKey;
+- (id<NSObject, NSCoding>)objectOnDiskForKey:(id)aKey;
+
+- (void)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
+- (void)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
 
 @end
 
@@ -227,9 +232,10 @@
 - (void)removeMemoryItemsToLimit {
 	if (self.memoryCountLimit > 0) {
 		while ([self.keyQueue count] > self.memoryCountLimit) {
-			id keyToRemove = [self.keyQueue objectAtIndex:0];
+			id keyToRemove = [[self.keyQueue objectAtIndex:0] retain];
 			[self.keyQueue removeObjectAtIndex:0];
 			[self.memoryCache removeObjectForKey:keyToRemove];
+			[keyToRemove release];
 		}
 	}
 }
@@ -275,27 +281,57 @@
 	}
 	
 	// Check memory cache
-	id returnObject = [self.memoryCache objectForKey:aKey];
-	
-	// Update disk cache timestamp
-	// NOTE - This might be a bit expensive to perform on every access
-	// If performance is a concern, this should probably be profiled, and perhaps
-	// removed, threaded, batched, etc.
-	[[NSFileManager defaultManager] setAttributes:[NSDictionary dictionaryWithObject:[NSDate date] forKey:NSFileModificationDate]
-									 ofItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:[ZSLRUQueueCache diskFilenameForCacheKey:aKey]]
-											error:nil];
-	
+	id<NSObject, NSCoding> returnObject = [self objectInMemoryForKey:aKey];
 	if (returnObject) {
-		[self.keyQueue removeObject:aKey];
+		return returnObject;
+	}
+	
+	returnObject = [self objectOnDiskForKey:aKey];
+	if (returnObject) {
+		// Add back to in-memory cache, and resize if necessary
+		[self.memoryCache setObject:returnObject forKey:aKey];
 		[self.keyQueue addObject:aKey];
+		[self removeMemoryItemsToLimit];
 		
 		return returnObject;
 	}
 	
-	// Check disk cache
+	return nil;
+}
+
+- (id<NSObject, NSCoding>)objectInMemoryForKey:(id)aKey {
+	if (!aKey) {
+		return nil;
+	}
+	
+	// Check memory cache
+	id returnObject = [self.memoryCache objectForKey:aKey];
+	if (returnObject) {
+		[self.keyQueue removeObject:aKey];
+		[self.keyQueue addObject:aKey];
+		
+		// Update disk cache timestamp
+		// NOTE - This might be a bit expensive to perform on every access
+		// If performance is a concern, this should probably be profiled, and perhaps
+		// removed, threaded, batched, etc.
+		[[NSFileManager defaultManager] setAttributes:[NSDictionary dictionaryWithObject:[NSDate date] forKey:NSFileModificationDate]
+										 ofItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:[ZSLRUQueueCache diskFilenameForCacheKey:aKey]]
+												error:nil];
+	}
+	
+	return returnObject;
+}
+
+- (id<NSObject, NSCoding>)objectOnDiskForKey:(id)aKey {
+	if (!aKey) {
+		return nil;
+	}
+	
 	NSData *cachedData = [[NSData alloc] initWithContentsOfFile:[self.cacheDirectory stringByAppendingPathComponent:[ZSLRUQueueCache diskFilenameForCacheKey:aKey]]
 														options:NSDataReadingUncached
 														  error:nil];
+	
+	id returnObject = nil;
 	if (cachedData) {
 		NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:cachedData];
 		returnObject = [unarchiver decodeObjectForKey:@"object"];
@@ -303,38 +339,52 @@
 		[unarchiver release];
 		
 		if (returnObject) {
-			// Add back to in-memory cache, and resize if necessary
-			[self.memoryCache setObject:returnObject forKey:aKey];
-			[self.keyQueue addObject:aKey];
-			[self removeMemoryItemsToLimit];
+			// Update disk cache timestamp
+			// NOTE - This might be a bit expensive to perform on every access
+			// If performance is a concern, this should probably be profiled, and perhaps
+			// removed, threaded, batched, etc.
+			[[NSFileManager defaultManager] setAttributes:[NSDictionary dictionaryWithObject:[NSDate date] forKey:NSFileModificationDate]
+											 ofItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:[ZSLRUQueueCache diskFilenameForCacheKey:aKey]]
+													error:nil];
 		}
 	}
 	[cachedData release];
 	
-	return [[returnObject retain] autorelease];
+	return returnObject;
 }
 
 - (void)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey {
 	if (!aKey) {
-		@throw [NSException exceptionWithName:@"NSInvalidArgumentException" reason:@"aKey cannot be nil when adding an object to ZSLRUQueueCache!" userInfo:nil];
-	} else if (!anObject) {
-		@throw [NSException exceptionWithName:@"NSInvalidArgumentException" reason:@"anOjbect cannot be nil when adding an object to ZSLRUQueueCache!" userInfo:nil];
+		// pre-condition
+		return;
+	}
+
+	[self setObjectInMemory:anObject forKey:aKey];
+	[self setObjectOnDisk:anObject forKey:aKey];
+}
+
+- (void)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
+	if (!aKey) {
+		// pre-condition
+		return;
 	}
 	
 	// Add key to queue
-	id existingObject = [self.memoryCache objectForKey:aKey];
-	if (existingObject) {
-		[self.keyQueue removeObject:aKey];
-	}
+	[self.keyQueue removeObject:aKey];
 	[self.keyQueue addObject:aKey];
 	
 	// Add to memory cache
-	if ([anObject isKindOfClass:[ZSImageData class]]) {
-		// If this is an image data object, cache an actual UIImage in memory
-		[self.memoryCache setObject:[UIImage imageWithData:((ZSImageData *)anObject).dataValue] forKey:aKey];
-	} else {
-		[self.memoryCache setObject:anObject forKey:aKey];
+	[self.memoryCache setObject:anObject forKey:aKey];
+
+	// Eject objects if we've overflowed
+	[self removeMemoryItemsToLimit];
 }
+
+- (void)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
+	if (!aKey) {
+		// pre-condition
+		return;
+	}
 	
 	// Add to disk cache
 	NSMutableData *data			= [NSMutableData data];
@@ -352,8 +402,61 @@
 	}
 	
 	// Eject objects if we've overflowed
-	[self removeMemoryItemsToLimit];
 	[self removeDiskItemsToLimit];
+}
+
+- (UIImage *)imageForKey:(id)aKey {
+	if (!aKey) {
+		// pre-condition
+		return nil;
+	}
+	
+	// Check memory cache
+	UIImage *memoryImage = [self objectInMemoryForKey:aKey];
+	if (memoryImage) {
+		return memoryImage;
+	}
+	
+	// Check disk
+	NSData *diskImageData = (NSData *)[self objectOnDiskForKey:aKey];
+	if (diskImageData) {
+		UIImage *image = [UIImage imageWithData:diskImageData];
+		
+		if (image) {
+			// Add back to in-memory cache, and resize if necessary
+			[self.memoryCache setObject:image forKey:aKey];
+			[self.keyQueue addObject:aKey];
+			[self removeMemoryItemsToLimit];
+		}
+		
+		return image;
+	}
+	
+	return nil;
+}
+
+- (void)setImage:(UIImage *)anImage forKey:(id)aKey {
+	if (!aKey) {
+		// pre-condition
+		return;
+	}
+	
+	NSData *imageData = UIImageJPEGRepresentation(anImage, 0.7);
+
+	[self setObjectInMemory:anImage forKey:aKey];
+	[self setObjectOnDisk:imageData forKey:aKey];
+}
+
+- (void)setImageData:(NSData *)imageData forKey:(id)aKey {
+	if (!aKey) {
+		// pre-condition
+		return;
+	}
+	
+	UIImage *anImage = [UIImage imageWithData:imageData];
+	
+	[self setObjectInMemory:anImage forKey:aKey];
+	[self setObjectOnDisk:imageData forKey:aKey];
 }
 
 - (void)removeAllObjectsFromMemory {

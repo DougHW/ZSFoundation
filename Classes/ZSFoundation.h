@@ -25,7 +25,6 @@
 #import <ZSFoundation/ZSBool.h>
 #import <ZSFoundation/ZSDataFetcher.h>
 #import <ZSFoundation/ZSFloat.h>
-#import <ZSFoundation/ZSImageData.h>
 #import <ZSFoundation/ZSInteger.h>
 #import <ZSFoundation/ZSKeyValuePair.h>
 #import <ZSFoundation/ZSLowMemoryPool.h>
