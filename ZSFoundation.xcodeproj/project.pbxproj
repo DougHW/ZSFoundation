@@ -428,7 +428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\nexport TEST_AFTER_BUILD=YES\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		F0E14334130CCCCE00C23ACB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -612,6 +612,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
 				SDKROOT = iphoneos;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -643,6 +644,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
 				SDKROOT = iphoneos;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
