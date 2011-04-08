@@ -55,8 +55,8 @@
 - (id<NSObject, NSCoding>)objectInMemoryForKey:(id)aKey;
 - (id<NSObject, NSCoding>)objectOnDiskForKey:(id)aKey;
 
-- (void)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
-- (void)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
+- (BOOL)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
+- (BOOL)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey;
 
 @end
 
@@ -353,20 +353,22 @@
 	return returnObject;
 }
 
-- (void)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey {
-	if (!aKey) {
+- (BOOL)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey {
+	if (!aKey || ![aKey conformsToProtocol:@protocol(NSCopying)]) {
 		// pre-condition
-		return;
+		return NO;
 	}
+	
+	id keyCopy = [aKey copy];
 
-	[self setObjectInMemory:anObject forKey:aKey];
-	[self setObjectOnDisk:anObject forKey:aKey];
+	[self setObjectOnDisk:anObject forKey:keyCopy];
+	return [self setObjectInMemory:anObject forKey:keyCopy];
 }
 
-- (void)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
+- (BOOL)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
 	if (!aKey) {
 		// pre-condition
-		return;
+		return NO;
 	}
 	
 	// Add key to queue
@@ -378,12 +380,14 @@
 
 	// Eject objects if we've overflowed
 	[self removeMemoryItemsToLimit];
+	
+	return YES;
 }
 
-- (void)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
+- (BOOL)setObjectOnDisk:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
 	if (!aKey) {
 		// pre-condition
-		return;
+		return NO;
 	}
 	
 	// Add to disk cache
@@ -399,10 +403,14 @@
 			NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.cacheDirectory stringByAppendingPathComponent:[ZSLRUQueueCache diskFilenameForCacheKey:aKey]] error:nil];
 			diskSize += [fileAttributes fileSize];
 		}
+		
+		// Eject objects if we've overflowed
+		[self removeDiskItemsToLimit];
+		
+		return YES;
 	}
 	
-	// Eject objects if we've overflowed
-	[self removeDiskItemsToLimit];
+	return NO;
 }
 
 - (UIImage *)imageForKey:(id)aKey {
@@ -435,28 +443,37 @@
 	return nil;
 }
 
-- (void)setImage:(UIImage *)anImage forKey:(id)aKey {
-	if (!aKey) {
+- (BOOL)setImage:(UIImage *)anImage forKey:(id)aKey {
+	if (!aKey || ![aKey conformsToProtocol:@protocol(NSCopying)]) {
 		// pre-condition
-		return;
+		return NO;
 	}
+	
+	id keyCopy = [aKey copy];
 	
 	NSData *imageData = UIImageJPEGRepresentation(anImage, 0.7);
+	if (imageData) {
+		[self setObjectOnDisk:imageData forKey:keyCopy];
+	}
 
-	[self setObjectInMemory:anImage forKey:aKey];
-	[self setObjectOnDisk:imageData forKey:aKey];
+	return [self setObjectInMemory:anImage forKey:keyCopy];
 }
 
-- (void)setImageData:(NSData *)imageData forKey:(id)aKey {
-	if (!aKey) {
+- (BOOL)setImageData:(NSData *)imageData forKey:(id)aKey {
+	if (!aKey || ![aKey conformsToProtocol:@protocol(NSCopying)]) {
 		// pre-condition
-		return;
+		return NO;
 	}
 	
-	UIImage *anImage = [UIImage imageWithData:imageData];
+	id keyCopy = [aKey copy];
 	
-	[self setObjectInMemory:anImage forKey:aKey];
-	[self setObjectOnDisk:imageData forKey:aKey];
+	UIImage *anImage = [UIImage imageWithData:imageData];
+	if (anImage) {
+		[self setObjectOnDisk:imageData forKey:keyCopy];
+		return [self setObjectInMemory:anImage forKey:keyCopy];
+	}
+	
+	return NO;
 }
 
 - (void)removeAllObjectsFromMemory {

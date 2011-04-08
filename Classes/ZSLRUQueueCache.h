@@ -133,13 +133,13 @@
 
 - (id<NSObject, NSCoding>)objectForKey:(id)aKey;
 
-- (void)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey;
+- (BOOL)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey;
 
 - (UIImage *)imageForKey:(id)aKey;
 
-- (void)setImage:(UIImage *)anImage forKey:(id)aKey;
+- (BOOL)setImage:(UIImage *)anImage forKey:(id)aKey;
 
-- (void)setImageData:(NSData *)imageData forKey:(id)aKey;
+- (BOOL)setImageData:(NSData *)imageData forKey:(id)aKey;
 
 - (void)removeAllObjectsFromMemory;
 
