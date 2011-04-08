@@ -27,7 +27,7 @@
 static char CODING_FORMAT_KEY;
 static char CODING_QUALITY_KEY;
 
-@implementation UIImage (NSCoding)
+@implementation UIImage (ZSFoundation_NSCoding)
 
 @dynamic codingFormat, codingQuality;
 

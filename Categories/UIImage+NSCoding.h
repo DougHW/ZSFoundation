@@ -34,7 +34,7 @@ typedef enum {
  * to encode a UIImage in.
  * This will default to JPEG format with a quality of 0.7
  */
-@interface UIImage (NSCoding) <NSCoding>
+@interface UIImage (ZSFoundation_NSCoding) <NSCoding>
 
 @property (nonatomic)	UIImageNSCodingFormat	codingFormat;
 @property (nonatomic)	CGFloat					codingQuality;
