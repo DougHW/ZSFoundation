@@ -130,7 +130,7 @@ static ZSDataFetcher *defaultDataFetcher;
 	}
 
 	// Add this delegate
-	[newFetcherConnection.connectionDelegates addObject:[NSValue valueWithPointer:aDelegate]];
+	[newFetcherConnection.connectionDelegates addObject:[NSValue valueWithNonretainedObject:aDelegate]];
 	
 	// Try to start a connection to the resource
 	if (!newFetcherConnection.connection) {
@@ -139,7 +139,7 @@ static ZSDataFetcher *defaultDataFetcher;
 		if (!newFetcherConnection.connection) {
 			// Unable to make a connection
 			for (NSValue *delegatePointer in newFetcherConnection.connectionDelegates) {
-				id<ZSDataFetcherDelegate> currentDelegate = (id<ZSDataFetcherDelegate>)[delegatePointer pointerValue];
+				id<ZSDataFetcherDelegate> currentDelegate = [delegatePointer nonretainedObjectValue];
 				[currentDelegate didFailFetchForURL:[aURLRequest URL] withStatusCode:404];
 			}
 			
@@ -151,12 +151,12 @@ static ZSDataFetcher *defaultDataFetcher;
 
 - (void)removeDelegate:(id<ZSDataFetcherDelegate>)aDelegate {
 	for (ZSDataFetcherConnection *aFetcherConnection in self.connections) {
-		for (NSValue *delegatePointer in aFetcherConnection.connectionDelegates) {
-			id<ZSDataFetcherDelegate> currentDelegate = (id<ZSDataFetcherDelegate>)[delegatePointer pointerValue];
+		for (NSValue *objectValue in aFetcherConnection.connectionDelegates) {
+			id<ZSDataFetcherDelegate> currentDelegate = [objectValue nonretainedObjectValue];
 			
-			if ([currentDelegate isEqual:aDelegate]) {
+			if (currentDelegate == aDelegate) {
 				// Delegate match
-				[aFetcherConnection.connectionDelegates removeObject:currentDelegate];
+				[aFetcherConnection.connectionDelegates removeObject:objectValue];
 				
 				if ([aFetcherConnection.connectionDelegates count] < 1) {
 					// Stop in-flight request
