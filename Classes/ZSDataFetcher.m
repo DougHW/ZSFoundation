@@ -150,25 +150,22 @@ static ZSDataFetcher *defaultDataFetcher;
 }
 
 - (void)removeDelegate:(id<ZSDataFetcherDelegate>)aDelegate {
-	for (ZSDataFetcherConnection *aFetcherConnection in self.connections) {
-		for (NSValue *objectValue in aFetcherConnection.connectionDelegates) {
-			id<ZSDataFetcherDelegate> currentDelegate = [objectValue nonretainedObjectValue];
+	NSValue *searchValue		= [NSValue valueWithNonretainedObject:aDelegate];
+	NSArray *connectionObjects	= [self.connections allObjects];
+	NSUInteger objectCount		= [connectionObjects count];
+	
+	for (NSUInteger i = 0; i < objectCount; i++) {
+		ZSDataFetcherConnection *aFetcherConnection = [connectionObjects objectAtIndex:i];
+		
+		[aFetcherConnection.connectionDelegates removeObject:searchValue];
+		
+		if ([aFetcherConnection.connectionDelegates count] < 1) {
+			// Stop in-flight request
+			[aFetcherConnection.connection cancel];
+			aFetcherConnection.connection = nil;
 			
-			if (currentDelegate == aDelegate) {
-				// Delegate match
-				[aFetcherConnection.connectionDelegates removeObject:objectValue];
-				
-				if ([aFetcherConnection.connectionDelegates count] < 1) {
-					// Stop in-flight request
-					[aFetcherConnection.connection cancel];
-					aFetcherConnection.connection = nil;
-					
-					// Remove this fetcher connection
-					[self.connections removeObject:aFetcherConnection];
-				}
-				
-				break;
-			}
+			// Remove this fetcher connection
+			[self.connections removeObject:aFetcherConnection];
 		}
 	}
 }
@@ -236,7 +233,9 @@ static ZSDataFetcher *defaultDataFetcher;
 	}
 	
 	// Connection succeeded, notify delegates
-	for (NSValue *delegatePointer in currentFetcherConnection.connectionDelegates) {
+	NSArray *connectionDelegateArray = [currentFetcherConnection.connectionDelegates allObjects];
+	for (NSUInteger i = 0; i < [connectionDelegateArray count]; i++) {
+		NSValue *delegatePointer = [connectionDelegateArray objectAtIndex:i];
 		id<ZSDataFetcherDelegate> currentDelegate = (id<ZSDataFetcherDelegate>)[delegatePointer pointerValue];
 		[currentDelegate didFetchData:currentFetcherConnection.connectionData forURL:currentFetcherConnection.connectionURL];
 	}
