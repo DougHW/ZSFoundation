@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		910509F6138C54B700953807 /* NSData+base64encode.h in Headers */ = {isa = PBXBuildFile; fileRef = 910509F4138C54B700953807 /* NSData+base64encode.h */; };
+		910509F6138C54B700953807 /* NSData+base64encode.h in Headers */ = {isa = PBXBuildFile; fileRef = 910509F4138C54B700953807 /* NSData+base64encode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		910509F8138C54C000953807 /* NSData+base64encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 910509F5138C54B700953807 /* NSData+base64encode.m */; };
 		910509F9138C54C100953807 /* NSData+base64encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 910509F5138C54B700953807 /* NSData+base64encode.m */; };
 		91050A01138C5B7600953807 /* TestUIImage+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 910509FE138C5B7600953807 /* TestUIImage+NSCoding.m */; };
 		91050A06138C5B8C00953807 /* TestNSData+base64encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 91050A03138C5B8C00953807 /* TestNSData+base64encode.m */; };
-		91050A09138C637200953807 /* NSString+base64decode.h in Headers */ = {isa = PBXBuildFile; fileRef = 91050A07138C637200953807 /* NSString+base64decode.h */; };
+		91050A09138C637200953807 /* NSString+base64decode.h in Headers */ = {isa = PBXBuildFile; fileRef = 91050A07138C637200953807 /* NSString+base64decode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91050A0A138C637200953807 /* NSString+base64decode.m in Sources */ = {isa = PBXBuildFile; fileRef = 91050A08138C637200953807 /* NSString+base64decode.m */; };
 		91050A0B138C637200953807 /* NSString+base64decode.m in Sources */ = {isa = PBXBuildFile; fileRef = 91050A08138C637200953807 /* NSString+base64decode.m */; };
-		912AE4F1134F8A2200B1B843 /* UIView+centering.h in Headers */ = {isa = PBXBuildFile; fileRef = 912AE4EF134F8A2200B1B843 /* UIView+centering.h */; };
+		912AE4F1134F8A2200B1B843 /* UIView+centering.h in Headers */ = {isa = PBXBuildFile; fileRef = 912AE4EF134F8A2200B1B843 /* UIView+centering.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		912AE4F3134F8A2900B1B843 /* UIView+centering.m in Sources */ = {isa = PBXBuildFile; fileRef = 912AE4F0134F8A2200B1B843 /* UIView+centering.m */; };
 		912AE4F4134F8A2900B1B843 /* UIView+centering.m in Sources */ = {isa = PBXBuildFile; fileRef = 912AE4F0134F8A2200B1B843 /* UIView+centering.m */; };
+		9130F51B138DA6C2009A6E0E /* NSData+base64encode.h in Headers */ = {isa = PBXBuildFile; fileRef = 910509F4138C54B700953807 /* NSData+base64encode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9130F51C138DA6C9009A6E0E /* NSString+base64decode.h in Headers */ = {isa = PBXBuildFile; fileRef = 91050A07138C637200953807 /* NSString+base64decode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D513133ABE7D00ACB3CE /* ZSLowMemoryPool.h in Headers */ = {isa = PBXBuildFile; fileRef = F0AA58EF1314D04C00B1809A /* ZSLowMemoryPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D516133ABF1E00ACB3CE /* ZSDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E2D514133ABF1800ACB3CE /* ZSDataFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E2D517133ABF1E00ACB3CE /* ZSDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D515133ABF1A00ACB3CE /* ZSDataFetcher.m */; };
@@ -318,11 +320,12 @@
 				F00053BE130C88D90093E979 /* ZSUInteger.h in Headers */,
 				F00053C2130C88F70093E979 /* ZSKeyValuePair.h in Headers */,
 				F0E144DD130CECC000C23ACB /* ZSFoundation.h in Headers */,
+				91050A09138C637200953807 /* NSString+base64decode.h in Headers */,
 				AA747D9F0F9514B9006C5449 /* ZSFoundation_Prefix.pch in Headers */,
 				F0AA58F21314D04C00B1809A /* ZSLowMemoryPool.h in Headers */,
 				91E2D516133ABF1E00ACB3CE /* ZSDataFetcher.h in Headers */,
 				91E2D539133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */,
-				91050A09138C637200953807 /* NSString+base64decode.h in Headers */,
+				9130F51B138DA6C2009A6E0E /* NSData+base64encode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +345,7 @@
 				91E2D53A133C3D0C00ACB3CE /* UIImage+NSCoding.h in Headers */,
 				912AE4F1134F8A2200B1B843 /* UIView+centering.h in Headers */,
 				910509F6138C54B700953807 /* NSData+base64encode.h in Headers */,
+				9130F51C138DA6C9009A6E0E /* NSString+base64decode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
