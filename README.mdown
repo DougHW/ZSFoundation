@@ -1,8 +1,10 @@
 ZSFoundation
-========
+============
+Source code available at https://github.com/Zoosk/ZSFoundation
+Compiled framework is available on that page via the Downloads link
 
 Licensing
---------
+---------
 SEE LICENSE.txt for licensing information
 
 Description
@@ -10,7 +12,7 @@ Description
 This library is intended to be a supplement to Apple's Cocoa frameworks.  It is organized to be as disjoint as possible, so that components can be reused individually used in projects.  It also has targets to compile universal frameworks, for drop-in use (details in TARGETS section).
 
 Highlights
---------
+----------
 ###ZSLRUQueueCache
 This class was really one of the main reasons I wanted to get this library out there.  It's useful for maintaining a disk-backed cache of items.  These items will be ejected from memory and disk based on user-specified constraints, on a "least recently used" basis.
 
