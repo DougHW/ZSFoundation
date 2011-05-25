@@ -1,7 +1,7 @@
 ZSFoundation
 ============
-Source code available at https://github.com/Zoosk/ZSFoundation
-Compiled framework is available on that page via the Downloads link
+Source code available at https://github.com/Zoosk/ZSFoundation.  
+Compiled framework is available on that page via the Downloads link.
 
 Licensing
 ---------
