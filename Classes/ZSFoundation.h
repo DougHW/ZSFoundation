@@ -19,7 +19,10 @@
 #import <Foundation/Foundation.h>
 
 // Categories
+#import <ZSFoundation/NSData+base64encode.h>
+#import <ZSFoundation/NSString+base64decode.h>
 #import <ZSFoundation/UIImage+NSCoding.h>
+#import <ZSFoundation/UIView+centering.h>
 
 // Classes
 #import <ZSFoundation/ZSBool.h>
