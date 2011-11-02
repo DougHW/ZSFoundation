@@ -1,5 +1,5 @@
 //
-//  ZSDataFetcher.h
+//  ZSFetchURLOperation.h
 //
 //	Copyright 2011 Zoosk, Inc.
 //
@@ -17,30 +17,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
-@protocol ZSDataFetcherDelegate <NSObject>
+@protocol ZSFetchURLOperationDelegate <NSObject>
 
 - (void)didFetchData:(NSData *)aData forURL:(NSURL *)aURL;
 - (void)didFailFetchForURL:(NSURL *)aURL withStatusCode:(NSInteger)aCode;
 
 @end
 
-@interface ZSDataFetcher : NSObject {
+@interface ZSFetchURLOperation : NSOperation {
 @private
-	NSMutableSet		*connections;
+	id <ZSFetchURLOperationDelegate>		delegate;
+	NSURL	*url;
+
 }
 
-/**
- * Returns the default data fetcher for the current thread.
- * One default ZSDataFetcher will be lazily created per thread.
- *
- * @return	The current thread's default data fetcher.
- */
-+ (ZSDataFetcher *)defaultDataFetcher;
-
-- (void)fetchURL:(NSURL *)aURL forDelegate:(id<ZSDataFetcherDelegate>)aDelegate;
-- (void)fetchRequest:(NSURLRequest *)aURLRequest forDelegate:(id<ZSDataFetcherDelegate>)aDelegate;
-- (void)removeDelegate:(id<ZSDataFetcherDelegate>)aDelegate;
+@property (atomic, assign)	id <ZSFetchURLOperationDelegate>		delegate;
+@property (atomic, retain)	NSURL	*url;
 
 @end

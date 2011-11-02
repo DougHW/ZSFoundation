@@ -17,7 +17,7 @@
 //
 
 #import "ZSLRUQueueCache.h"
-#import "UIImage+NSCoding.h"
+#import "UIImage+ZSFoundation.h"
 #import "ZSKeyValuePair.h"
 
 
@@ -252,8 +252,10 @@
 	if (currentSize > self.diskSizeLimit) {
 		NSArray *cachedFilePairs	= [self cacheFilesSortedByModifiedDate];
 		NSUInteger itemIndex		= [cachedFilePairs count];
+		
+		unsigned long long newSizeTarget = self.diskSizeLimit * ZSLRUQueueCache_DISK_FLUSH_FACTOR;
 	
-		while (itemIndex > 0 && currentSize > self.diskSizeLimit) {
+		while (itemIndex > 0 && currentSize > newSizeTarget) {
 			itemIndex--;
 			
 			ZSKeyValuePair *filePair		= (ZSKeyValuePair *)[cachedFilePairs objectAtIndex:itemIndex];
@@ -362,7 +364,10 @@
 	id keyCopy = [aKey copy];
 
 	[self setObjectOnDisk:anObject forKey:keyCopy];
-	return [self setObjectInMemory:anObject forKey:keyCopy];
+	BOOL success = [self setObjectInMemory:anObject forKey:keyCopy];
+	
+	[keyCopy release];
+	return success;
 }
 
 - (BOOL)setObjectInMemory:(id<NSObject,NSCoding>)anObject forKey:(id)aKey {
@@ -413,72 +418,9 @@
 	return NO;
 }
 
-- (UIImage *)imageForKey:(id)aKey {
-	if (!aKey) {
-		// pre-condition
-		return nil;
-	}
-	
-	// Check memory cache
-	UIImage *memoryImage = [self objectInMemoryForKey:aKey];
-	if (memoryImage) {
-		return memoryImage;
-	}
-	
-	// Check disk
-	NSData *diskImageData = (NSData *)[self objectOnDiskForKey:aKey];
-	if (diskImageData) {
-		UIImage *image = [UIImage imageWithData:diskImageData];
-		
-		if (image) {
-			// Add back to in-memory cache, and resize if necessary
-			[self.memoryCache setObject:image forKey:aKey];
-			[self.keyQueue addObject:aKey];
-			[self removeMemoryItemsToLimit];
-		}
-		
-		return image;
-	}
-	
-	return nil;
-}
-
-- (BOOL)setImage:(UIImage *)anImage forKey:(id)aKey {
-	if (!aKey || ![aKey conformsToProtocol:@protocol(NSCopying)]) {
-		// pre-condition
-		return NO;
-	}
-	
-	id keyCopy = [aKey copy];
-	
-	NSData *imageData = UIImageJPEGRepresentation(anImage, 0.7);
-	if (imageData) {
-		[self setObjectOnDisk:imageData forKey:keyCopy];
-	}
-
-	return [self setObjectInMemory:anImage forKey:keyCopy];
-}
-
-- (BOOL)setImageData:(NSData *)imageData forKey:(id)aKey {
-	if (!aKey || ![aKey conformsToProtocol:@protocol(NSCopying)]) {
-		// pre-condition
-		return NO;
-	}
-	
-	id keyCopy = [aKey copy];
-	
-	UIImage *anImage = [UIImage imageWithData:imageData];
-	if (anImage) {
-		[self setObjectOnDisk:imageData forKey:keyCopy];
-		return [self setObjectInMemory:anImage forKey:keyCopy];
-	}
-	
-	return NO;
-}
-
 - (void)removeAllObjectsFromMemory {
-	self.keyQueue		= [[NSMutableArray alloc] initWithCapacity:(self.memoryCountLimit + 1)];
-	self.memoryCache	= [[NSMutableDictionary alloc] initWithCapacity:(self.memoryCountLimit + 1)];
+	self.keyQueue		= [[[NSMutableArray alloc] initWithCapacity:(self.memoryCountLimit + 1)] autorelease];
+	self.memoryCache	= [[[NSMutableDictionary alloc] initWithCapacity:(self.memoryCountLimit + 1)] autorelease];
 }
 
 - (void)removeAllObjectsFromDisk {

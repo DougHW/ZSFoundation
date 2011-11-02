@@ -70,8 +70,8 @@
 
 - (NSUInteger)hash {
 	NSUInteger hash = 0;
-	hash = (hash * 31) + key != nil ? [key hash] : 0;
-	hash = (hash * 31) + value != nil ? [value hash] : 0;
+	hash = (key != nil ? [key hash] : 0);
+	hash = (hash * 31) + (value != nil ? [value hash] : 0);
 	return hash;
 }
 

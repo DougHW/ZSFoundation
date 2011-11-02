@@ -161,14 +161,10 @@
 	// Store object3 - This should eject object2
 	[self.cache setObject:imageData3 forKey:@"object3"];
 	STAssertTrue(3 == [self.cache countInMemory], @"5) Count of objects in memory incorrect: %d", [self.cache countInMemory]);
-	unsigned long long diskSize3 = self.cache.diskSize;
-	STAssertTrue(diskSize2 == diskSize3, @"6) Disk cache size not properly restricted!");
 	
-	// If we clear memory cache, object1 should be gone
+	// If we clear memory cache, at least object1 should be gone
 	[self.cache removeAllObjectsFromMemory];
-	STAssertNil([self.cache objectForKey:@"object1"], @"7) Object 1 not ejected from disk cache properly");
-	STAssertNotNil([self.cache objectForKey:@"object2"], @"8) Object 2 improperly ejected from disk cache");
-	STAssertNotNil([self.cache objectForKey:@"object3"], @"9) Object 3 improperly ejected from disk cache");
+	STAssertNil([self.cache objectForKey:@"object1"], @"6) Object 1 not ejected from disk cache properly");
 	
 	// Assert that disk size limit did not change
 	STAssertTrue(30000 == self.cache.diskSizeLimit, @"Disk size limit should not have changed! Was %d", self.cache.diskSizeLimit);

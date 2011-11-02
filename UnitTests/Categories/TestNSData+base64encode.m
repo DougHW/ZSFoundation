@@ -17,8 +17,8 @@
 //
 
 #import "TestNSData+base64encode.h"
-#import "NSData+base64encode.h"
-#import "NSString+base64decode.h"
+#import "NSData+ZSFoundation.h"
+#import "NSString+ZSFoundation.h"
 
 
 @implementation TestNSData_base64encode

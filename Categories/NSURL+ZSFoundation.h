@@ -1,0 +1,46 @@
+//
+//  NSURL+ZSFoundation.h
+//
+//	Copyright 2011 Zoosk, Inc.
+//
+//	Licensed under the Apache License, Version 2.0 (the "License");
+//	you may not use this file except in compliance with the License.
+//	You may obtain a copy of the License at
+//
+//	http://www.apache.org/licenses/LICENSE-2.0
+//
+//	Unless required by applicable law or agreed to in writing, software
+//	distributed under the License is distributed on an "AS IS" BASIS,
+//	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//	See the License for the specific language governing permissions and
+//	limitations under the License.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSURL (NSURL_ZSFoundation)
+
+/**
+ * Returns the identifier portion of a URL (aka the filename).
+ * Example: URL with path "/test/filesystem/path.jpg" returns "path.jpg"
+ * Example: URL with path "https://www.test.com/test/filesystem/path.jpg" returns "path.jpg"
+ *
+ * @return	The resource identifier.
+ */
+- (NSString *)resourceIdentifier;
+
+/**
+ * Separates an NSURL's path into its components. Leading and trailing slashes are ignored.
+ *
+ * @return	Array of path components
+ */
+- (NSArray *)pathArray;
+
+/**
+ * Separates an NSURL's query parameters into its components and inserts them into a dictionary.
+ *
+ * @return	Dictionary of query components
+ */
+- (NSDictionary *)queryDictionary;
+
+@end

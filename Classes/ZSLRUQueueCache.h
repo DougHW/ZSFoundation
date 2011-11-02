@@ -20,6 +20,8 @@
 #import <UIKit/UIKit.h>
 
 
+#define ZSLRUQueueCache_DISK_FLUSH_FACTOR 0.6
+
 /**
  * ZSLRUQueueCache is a least recently used cache with user defined limits.
  *
@@ -52,7 +54,9 @@
 	 */
 	NSUInteger				memoryCountLimit;
 	/**
-	 * If > 0, disk cache will be limited to this size in Bytes
+	 * If > 0, disk cache will be limited to this size in Bytes.
+	 * When disk cache reaches this limit, it will be reduced by ZSLRUQueueCache_DISK_FLUSH_FACTOR to avoid
+	 * rapid, repetitive flushing.
 	 */
 	NSUInteger				diskSizeLimit;
 	/**
@@ -105,6 +109,9 @@
 @property (nonatomic)			BOOL					shouldClearOnLowMemory;
 @property (nonatomic)			BOOL					shouldReduceCacheOnLowMemory;
 
+/**
+ * Returns the cache path for an object with given key.
+ */
 + (NSString *)diskFilenameForCacheKey:(id)aKey;
 
 /**
@@ -134,12 +141,6 @@
 - (id<NSObject, NSCoding>)objectForKey:(id)aKey;
 
 - (BOOL)setObject:(id<NSObject, NSCoding>)anObject forKey:(id)aKey;
-
-- (UIImage *)imageForKey:(id)aKey;
-
-- (BOOL)setImage:(UIImage *)anImage forKey:(id)aKey;
-
-- (BOOL)setImageData:(NSData *)imageData forKey:(id)aKey;
 
 - (void)removeAllObjectsFromMemory;
 

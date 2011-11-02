@@ -1,11 +1,20 @@
 //
 //  ZSDataFetcher.m
-//  ZSFoundation
 //
-//  Created by Doug Wehmeier on 3/23/11.
-//  Copyright 2011 Zoosk. All rights reserved.
+//	Copyright 2011 Zoosk, Inc.
 //
-
+//	Licensed under the Apache License, Version 2.0 (the "License");
+//	you may not use this file except in compliance with the License.
+//	You may obtain a copy of the License at
+//
+//	http://www.apache.org/licenses/LICENSE-2.0
+//
+//	Unless required by applicable law or agreed to in writing, software
+//	distributed under the License is distributed on an "AS IS" BASIS,
+//	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//	See the License for the specific language governing permissions and
+//	limitations under the License.
+//
 #import "ZSDataFetcher.h"
 
 
@@ -63,22 +72,21 @@
 
 @interface ZSDataFetcher ()
 
-@property (nonatomic, retain)	NSMutableSet		*connections;
+@property (nonatomic, retain)	NSMutableSet	*connections;
 
 @end
 
 @implementation ZSDataFetcher
 
-static ZSDataFetcher *defaultDataFetcher;
-
-+ (void)initialize {
-	if (!defaultDataFetcher) {
-		defaultDataFetcher = [[ZSDataFetcher alloc] init];
-	}
-}
-
 + (ZSDataFetcher *)defaultDataFetcher {
-	return defaultDataFetcher;
+	ZSDataFetcher *threadDataFetcher = (ZSDataFetcher *)[[[NSThread currentThread] threadDictionary] objectForKey:@"NSThread_ZSDataFetcher"];
+	
+	if (!threadDataFetcher) {
+		threadDataFetcher = [[[ZSDataFetcher alloc] init] autorelease];
+		[[[NSThread currentThread] threadDictionary] setObject:threadDataFetcher forKey:@"NSThread_ZSDataFetcher"];
+	}
+	
+    return threadDataFetcher;
 }
 
 @synthesize connections;

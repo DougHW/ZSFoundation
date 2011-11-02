@@ -17,7 +17,7 @@
 //
 
 #import "TestUIImage+NSCoding.h"
-#import "UIImage+NSCoding.h"
+#import "UIImage+ZSFoundation.h"
 
 
 @implementation TestUIImage_NSCoding

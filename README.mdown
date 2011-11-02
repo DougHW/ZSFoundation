@@ -5,16 +5,19 @@ Compiled framework is available on that page via the Downloads link.
 
 Licensing
 ---------
-SEE LICENSE.txt for licensing information
+See LICENSE for licensing information
 
 Description
 ------------
-This library is intended to be a supplement to Apple's Cocoa frameworks.  It is organized to be as disjoint as possible, so that components can be reused individually used in projects.  It also has targets to compile universal frameworks, for drop-in use (details in TARGETS section).
+This library is intended to be a collection of sample code that can be used in its entirely, or piecewise.  Components should be usable on an individual basis, given that any inclusions are also included.
 
 Highlights
 ----------
+###ZSImageCache
+This class is useful if your application requires significant numbers of images, fetched from the network.  It maintains a disk-backed cache of those images, and also keeps a fixed number in memory on an least recently used (LRU) basis to alleviate thrashing.  These options are configurable.
+
 ###ZSLRUQueueCache
-This class was really one of the main reasons I wanted to get this library out there.  It's useful for maintaining a disk-backed cache of items.  These items will be ejected from memory and disk based on user-specified constraints, on a "least recently used" basis.
+This class is useful for maintaining a disk-backed cache of NSCoding compliant objects.  These items will be ejected from memory and disk based on user-specified constraints, on a least recently used (LRU) basis.  This class can be EXPENSIVE, and should be used only in situations where high performance is not necessary.
 
 ###ZSBool, ZSFloat, ZSInteger, ZSUInteger
 These classes warrant some explanation.  For one, Cocoa already has BOOL, CGFloat, NSInteger and NSUInteger.  Why not just use those?  There are a few problems.
@@ -36,18 +39,16 @@ Often, when you use these types of little helper methods, you use them in bursts
 
 By using this "low memory pool", you can register pointers to pointers and, when a low memory condition arises, it will go through and release all those objects, and set their pointers to nil.  This is also handy in that it saves every class you write from having to set up to listen for this notification.  It can just register the appropriate pointers with the pool and forget about it.
 
-Targets (aka "how to build and use this")
+Targets and Usage
 ------
-ZSFoundation has a few different build targets.  Xcode does not allow for the creation of universal libraries or frameworks for iphone.  We use the following targets to overcome this limitation.
+ZSFoundation used to have scripts to build a Framework, but I find that just importing the project as a dependency makes maintenance and debugging easier.
+So as of now, I recommend that you:
 
-* **ZSFoundation-framework**.  This target first runs ZSFoundation-universal_library, and then packages that artifact into a framework folder structure.
+1. Import this project as a project dependency.
+2. Add it to the Target Dependency build phase of your main project.
+3. Add libZSFoundation.a to the Link Binary With Libraries build phase of your main project.
+4. Import ZSFoundation.h where needed, or individual classes on demand.
 
-* **ZSFoundation-universal_library**.  This target uses a script to detect whether xcode is indicating simulator or device compilation, and compile for the other target as well.  It then combines the two artifacts using the 'lipo' utility, into a single universal library that will work on either platform.
+* **ZSFoundation**.  Builds the project into a static library (libZSFoundation.a).
 
-* **UnitTests**.  Runs the unit test suite for the library.
-
-Usage
------
-If you want to use this library in your own project, the simplest way is to include the compiled framework.  To do that, build the ZSFoundation-framework target.  Find the ZSFoundation.framework folder inside your build folder and copy/paste it into your project.  In your project, right-click on your project in the Overview window and click "Add -> Existing Framworks".  Click "Add Other" in the next window, and select the ZSFoundation.framwork folder.
-
-Alternatively, you can set this project as a dependency in your own project.  I'll write up instructions for that soon.
+* **ZSFoundationUnitTests**.  Runs the unit test suite for the project.
